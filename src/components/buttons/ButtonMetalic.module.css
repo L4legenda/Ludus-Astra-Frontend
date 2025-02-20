@@ -1,0 +1,75 @@
+.premium-btn {
+    position: relative;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 64px;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+}
+
+.premium-btn:active {
+    transform: translateY(1px);
+}
+
+.premium-btn:hover .btn-glow {
+    opacity: 0.3;
+}
+
+
+/* Metallic Premium Button Styles */
+.metallic-btn {
+    background: linear-gradient(145deg, #303030, #1a1a1a);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        -5px -5px 10px rgba(255, 255, 255, 0.05),
+        5px 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.metallic-btn .btn-content {
+    background: linear-gradient(90deg, #c0c0c0, #fff, #c0c0c0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.metallic-btn:hover {
+    background: linear-gradient(145deg, #353535, #202020);
+    transform: translateY(-2px);
+    box-shadow: 
+        -5px -5px 15px rgba(255, 255, 255, 0.07),
+        5px 5px 20px rgba(0, 0, 0, 0.6);
+}
+
+.metallic-btn:active {
+    background: linear-gradient(145deg, #202020, #353535);
+    transform: translateY(1px);
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(4);
+        opacity: 0;
+    }
+}

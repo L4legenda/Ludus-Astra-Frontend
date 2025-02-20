@@ -1,0 +1,133 @@
+.premium-btn {
+    position: relative;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 64px;
+    background: linear-gradient(45deg, #6366f1, #8b5cf6);
+    cursor: pointer;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.premium-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3);
+}
+
+.premium-btn:active {
+    transform: translateY(1px);
+}
+
+.premium-btn:hover .btn-glow {
+    opacity: 0.3;
+}
+
+
+/* Cosmic Premium Button Styles */
+.cosmic-btn {
+    background: linear-gradient(135deg, #2b2f77, #141e30);
+    border: none;
+    box-shadow:
+        0 0 25px rgba(99, 102, 241, 0.3),
+        inset 0 0 15px rgba(138, 180, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cosmic-btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #4facfe, #00f2fe, #a6c1ee);
+    opacity: 0;
+    transition: opacity 0.3s;
+    border-radius: inherit;
+    z-index: 1;
+}
+
+.cosmic-btn::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: inherit;
+    border-radius: inherit;
+    z-index: 2;
+}
+
+.cosmic-btn .btn-content {
+    position: relative;
+    z-index: 3;
+    background: linear-gradient(to right, #e0e7ff, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.cosmic-btn .btn-stars {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s;
+    background-image:
+        radial-gradient(1px 1px at 10px 10px, white 100%, transparent),
+        radial-gradient(1px 1px at 20px 20px, white 100%, transparent),
+        radial-gradient(2px 2px at 30px 30px, white 100%, transparent),
+        radial-gradient(1px 1px at 40px 40px, white 100%, transparent);
+    background-size: 100px 100px;
+}
+
+.cosmic-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 0 35px rgba(99, 102, 241, 0.4),
+        inset 0 0 25px rgba(138, 180, 255, 0.3);
+}
+
+.cosmic-btn:hover::before {
+    opacity: 1;
+}
+
+.cosmic-btn:hover .btn-stars {
+    opacity: 0.3;
+    animation: space-float 4s linear infinite;
+}
+
+.cosmic-btn:active {
+    transform: translateY(1px);
+}
+
+@keyframes space-float {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 100px 100px;
+    }
+}
+
+@keyframes cosmic-particle {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(0);
+        opacity: 0;
+    }
+}
