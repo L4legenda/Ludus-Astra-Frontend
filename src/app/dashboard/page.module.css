@@ -1,0 +1,12 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.panel{
+    z-index: 1;
+    border: 1px dashed #8a8a8a;
+    padding: 10px;
+    background: #0e131a;
+    color: #fff;
+}
