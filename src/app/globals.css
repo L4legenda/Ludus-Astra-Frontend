@@ -40,6 +40,12 @@ a {
     color-scheme: dark;
   }
 }
+.void-horizontal {
+  margin-left: auto;
+}
+.void-vertical {
+  margin-top: auto;
+}
 
 form {
   display: flex;

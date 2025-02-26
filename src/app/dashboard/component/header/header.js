@@ -15,7 +15,7 @@ export function Header() {
 
                     <ProgressBar progress={50} maxProgress={200} style={{ minWidth: '400px' }} />
                 </div>
-                <div className={styles.void}></div>
+                <div className="void-horizontal"></div>
                 <div className={styles.column}>
                     <button>Выход</button>
                 </div>
