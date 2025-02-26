@@ -1,0 +1,38 @@
+.container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition: right 1s ease;
+}
+.base_container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.info {
+    position: absolute;
+    left: calc(100% + 5px);
+    color: #e6e6e6;
+    transform-origin: bottom left;
+    transform: rotate(90deg);
+    text-wrap: nowrap;
+    cursor: pointer;
+    transition: 1s;
+}
+.info:hover {
+    color: #fff;
+}
+.info:active {
+    color: #48a7ee;
+}
+.info.activated {
+    opacity: 0;
+}
+
+
+.container.activated {
+    right: 0%;
+}
+.container.collapsed {
+    right: 100%;
+}

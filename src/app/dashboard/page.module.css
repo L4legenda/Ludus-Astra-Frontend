@@ -3,8 +3,10 @@
     height: 100%;
 }
 .area_work {
-    margin-top: 20px;
+    position: relative;
+    margin-top: 40px;
     display: flex;
     flex-direction: row;
-    height: calc(100% - 80px - 20px);
+    height: calc(100% - 80px - 40px);
+    gap: 40px;
 }
