@@ -28,3 +28,11 @@
 .label {
     color: #fff;
 }
+
+.titlePage {
+    text-align: center;
+    color: #fff;
+}
+.form {
+    min-width: 400px;
+}

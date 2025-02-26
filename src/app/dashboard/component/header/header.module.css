@@ -1,0 +1,30 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.avatar {
+    width: 50px;
+    height: 50px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.fullname {
+    color: #fff;
+    font-size: 16px;
+}
+.level {
+    color: #fff;
+    font-size: 16px;
+}
+.void {
+    margin-left: auto;
+}

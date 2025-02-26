@@ -1,0 +1,108 @@
+.progressBarContainer {
+    width: 100%;
+    height: 20px;
+    background-color: black;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    /* Для позиционирования текста */
+}
+
+.progressBar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease-in-out;
+    background: linear-gradient(90deg, #FC03FF, #9662FF, #8F65FD, #049ED9);
+    /* Градиент */
+    position: relative;
+    /* Для позиционирования псевдоэлемента */
+    overflow: hidden;
+    /* Чтобы градиент не выходил за пределы */
+}
+
+.progressBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    /* Черный фон для маскировки градиента */
+    transform: translateX(-100%);
+    /* Начальное положение */
+    transition: transform 0.3s ease-in-out;
+    /* Анимация */
+}
+
+.progressText {
+    position: absolute;
+    /* Абсолютное позиционирование */
+    top: 50%;
+    /* Центрирование по вертикали */
+    left: 50%;
+    /* Центрирование по горизонтали */
+    transform: translate(-50%, -50%);
+    /* Смещение для точного центрирования */
+    color: white;
+    /* Цвет текста */
+    font-size: 14px;
+    /* Размер текста */
+    font-weight: bold;
+    /* Жирный текст */
+}
+
+
+
+
+
+
+
+
+
+.progress-bar-container {
+	width: 400px;
+	height: 20px;
+	position: relative;
+	border-radius: 2px;
+	overflow: hidden;
+    border: 1px solid #cacaca;
+}
+
+.progress-bar-child {
+	width: 100%;
+	height: 100%;
+}
+
+.progress {
+	color: white;
+	text-align: center;
+	animation-direction: reverse;
+	background: #FC03FF;
+
+	background: linear-gradient(to right,#FC03FF, #9662FF, #8F65FD, #049ED9);
+}
+
+.shrinker {
+	background-color: #121218;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+}
+
+.timelapse {
+	/* animation-name: timelapse;
+	animation-fill-mode: forwards;
+	animation-duration: 2s;
+	animation-timing-function: cubic-bezier(.86, .05, .4, .96); */
+}
+
+@keyframes timelapse {
+	0% {
+		width: 100%;
+	}
+	100% {
+		width: 0%;
+	}
+}

@@ -1,6 +1,6 @@
 import styles from "./BgCosmic.module.css";
 
-export function BgCosmic({children}) {
+export function BgCosmic({ children }) {
     return (
         <div className={styles.container}>
             <div className={styles.sky_stars}>
@@ -8,7 +8,10 @@ export function BgCosmic({children}) {
                 <div className={styles.stars2}></div>
                 <div className={styles.stars3}></div>
             </div>
-            {children}
+            <div className={styles.containerChild}>
+                {children}
+            </div>
+
         </div>
 
     )

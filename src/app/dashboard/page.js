@@ -1,16 +1,13 @@
 import styles from "./page.module.css";
 import { BgCosmic } from "@/components/cosmic/BgCosmic"
-
+import { Header } from "./component/header/header";
 
 export default function Dashboard() {
     return (
         <BgCosmic>
-            <div className={styles.center}>
-                <div className={styles.panel}>
-                    234
-                </div>
-            </div>
-
+            <main className={styles.main}>
+                <Header />
+            </main>
         </BgCosmic>
     )
 }

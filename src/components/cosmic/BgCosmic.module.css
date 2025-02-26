@@ -3,6 +3,12 @@
     height: 100%;
 }
 
+.containerChild {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
 
 /* Effect Star */
 

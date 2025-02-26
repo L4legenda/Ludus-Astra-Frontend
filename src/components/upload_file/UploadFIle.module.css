@@ -1,0 +1,20 @@
+.titleComponent {
+    color: #fff;
+
+}
+
+.box_upload {
+    margin-top: 5px;
+    border: 1px dashed #c0c0c0;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    color: #858585;
+    font-size: 13px;
+}
+
+.preview_image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}

@@ -13,6 +13,11 @@
     gap: 15px;
 }
 
+.titlePage {
+    text-align: center;
+    color: #fff;
+}
+
 .link_signup {
     color: #fff;
     z-index: 1;
@@ -27,4 +32,8 @@
 
 .label {
     color: #fff;
+}
+
+.form {
+    min-width: 400px;
 }

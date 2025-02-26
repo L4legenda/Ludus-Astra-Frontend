@@ -40,3 +40,52 @@ a {
     color-scheme: dark;
   }
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  background: none;
+  border: none;
+  border-bottom: 1.5px solid #D9D9D9;
+  color: #EAEAEA;
+  outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border: none;
+  border-bottom: 1.5px solid #48A7EE;
+  outline: none;
+}
+label {
+  color: #fff;
+}
+.box-input{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+button {
+  background-color: #0C0F14;
+  border: 2px solid #6F6F6F;
+  color: #EAEAEA;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 25px ;
+}
+button:hover {
+  color: #fff;
+  border: 2px solid #a2a2a2;
+}
+button:active {
+  border: 2px solid #3974a0;
+  color: #48A7EE;
+}
