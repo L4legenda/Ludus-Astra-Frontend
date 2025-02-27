@@ -3,7 +3,21 @@ import { useState, useCallback } from 'react';
 import styles from './page.module.css'
 import { SubPanelContainer } from "@/components/panel/SubPanelContainer"
 import { MemberList } from '@/components/member/MemberList';
-export default function Dashboard() {
+import { SelecterUser } from '@/components/user/SelecterUser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { ModalLongText } from '../components/modal/modal-long-text/ModalLongText';
+
+
+export default function ProjectCreate() {
+
+    const handleContentDescriptionChange = (newContent) => {
+        setFormData({ ...formData, description: newContent });
+        setModalDescription(false);
+    };
+
+    const [isModalDescription, setModalDescription] = useState(false);
+
     const [formData, setFormData] = useState({
         name: '',
         description: '',
@@ -28,41 +42,51 @@ export default function Dashboard() {
 
     return (
         <main className={styles.container}>
-            <h1 className={styles.titleComponent}>Создание Проекта</h1>
-            <SubPanelContainer>
-                <form onSubmit={handleSubmit} className={styles.form}>
-                    <div className='box-input'>
-                        <label htmlFor="name">Название:</label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-                    <div className='box-input'>
-                        <label htmlFor="description">Описание:</label>
-                        <textarea
-                            id='description'
-                            name="description"
-                            value={formData.description}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
-                    </div>
-                    <div className='box-input'>
-                        <label htmlFor="members">Участники:</label>
-                        <div>
+            <div className={styles.containerCreateProject}>
+                <h1 className={styles.titleComponent}>Создание Проекта</h1>
+                <SubPanelContainer>
+                    <form onSubmit={handleSubmit} className={styles.form}>
+                        <div className='box-input'>
+                            <label htmlFor="name">Название:</label>
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder='Название проекта'
+                                value={formData.name}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className='box-input'>
+                            <div className={styles.row}>
+                                <label htmlFor="description">Описание:</label>
+                                <FontAwesomeIcon icon={faPenToSquare} className={styles.edit_description} onClick={() => setModalDescription(!isModalDescription)} />
+                                <ModalLongText isModal={isModalDescription} onClose={setModalDescription} value={formData.description} handleContent={handleContentDescriptionChange} />
+                            </div>
+
+                            <textarea
+                                id='description'
+                                name="description"
+                                placeholder='Описание проекта'
+                                value={formData.description}
+                                onChange={handleChange}
+                                required
+                            ></textarea>
+                        </div>
+                        <div className='box-input'>
+                            <label htmlFor="members">Участники:</label>
                             <MemberList />
                         </div>
-                    </div>
-                    <button type="submit" style={{ padding: '10px 20px' }}>
-                        Войти
-                    </button>
-                </form>
-            </SubPanelContainer>
+                        <button type="submit" style={{ padding: '10px 20px' }}>
+                            Создать
+                        </button>
+                    </form>
+                </SubPanelContainer>
+            </div>
+            <div>
+                <SelecterUser />
+            </div>
         </main>
     )
 }

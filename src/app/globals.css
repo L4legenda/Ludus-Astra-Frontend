@@ -95,7 +95,8 @@ form {
 
 input[type="text"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="search"] {
   background: none;
   border: none;
   border-bottom: 1.5px solid #D9D9D9;
@@ -106,7 +107,8 @@ input[type="password"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
-input[type="password"]:focus {
+input[type="password"]:focus,
+input[type="search"]:focus {
   border: none;
   border-bottom: 1.5px solid #48A7EE;
   outline: none;
@@ -119,6 +121,7 @@ textarea {
   border: 1px dashed #D9D6D6;
   color: #EAEAEA;
   padding: 8px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 textarea:focus {
@@ -128,7 +131,7 @@ textarea:focus {
 }
 
 label {
-  color: #fff;
+  color: #eaeaea;
 }
 
 .box-input {

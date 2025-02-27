@@ -1,8 +1,31 @@
 .container {
     width: 50px;
     height: 50px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    position: relative;
+}
+.container:hover {
+    border: 1px solid #3974a0;
 }
 .avatar {
     width: 100%;
     height: 100%;
+}
+.lvl {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    font-size: 13px;
+    font-weight: bold;
+}
+.close {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: red;
+}
+.container:hover .close {
+    display: block;
 }
