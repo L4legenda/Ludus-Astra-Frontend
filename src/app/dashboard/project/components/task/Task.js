@@ -1,9 +1,9 @@
 import styles from './Task.module.css';
 
 
-export function Task() {
+export function Task({onClick}) {
     return (
-        <div className={styles.container}>
+        <div className={styles.container} onClick={onClick}>
             <div className={styles.name}>
                 Название
             </div>

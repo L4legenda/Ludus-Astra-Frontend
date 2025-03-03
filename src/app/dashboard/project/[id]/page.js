@@ -1,11 +1,11 @@
+"use client"
 import styles from './page.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire, faPersonWalking, faPersonHiking } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '../components/task/Task';
 import { ModalViewTask } from '../components/modal/modal-view-task/ModalViewTask';
 import { useState } from 'react';
-export default async function ProjectView({ params }) {
-    const project_id = (await params).id
+export default function ProjectView({ params }) {
     const [isModalViewTask, setModalViewTask] = useState(false)
     return (
         <div className={styles.container}>
@@ -65,7 +65,7 @@ export default async function ProjectView({ params }) {
                     </div>
                 </div>
             </div>
-            <ModalViewTask isModal={isModalViewTask}/>
+            <ModalViewTask isModal={isModalViewTask} onClose={()=>setModalViewTask(false)}/>
         </div>
     )
 }
