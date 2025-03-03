@@ -1,0 +1,76 @@
+.container {
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    height: 30px;
+}
+.container > * {
+    height: 100%;
+}
+.container:hover {
+    background: #48a6ee27;
+}
+
+.name {
+    font-size: 14px;
+}
+
+.exp {
+    text-wrap: nowrap;
+    width: 100px;
+    margin-left: auto;
+    border-left: 1px dashed #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ddc231;
+    font-size: 14px;
+}
+
+.deadline {
+    text-wrap: nowrap;
+    width: 100px;
+    border-left: 1px dashed #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.user {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    width: 175px;
+    border-left: 1px dashed #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user_avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 50px;
+}
+
+.user_name {
+    text-wrap: nowrap;
+    font-size: 14px;
+}
+
+.process {
+    width: 125px;
+    border-left: 1px dashed #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: nowrap;
+}
+.type_process {
+    color: #377cdd;
+    font-size: 14px;
+}
