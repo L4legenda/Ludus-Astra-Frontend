@@ -1,4 +1,18 @@
 .modal {
     gap: 10px;
     width: 700px;
+    height: 600px;
+    overflow: auto;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: bold;
+}
+.exp {
+    font-size: 14px;
+    color: gold;
+}
+.title_tag {
+    font-weight: bold;
 }

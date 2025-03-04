@@ -1,0 +1,16 @@
+.title {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.content {
+    margin: 0; /* Убираем внешний отступ */
+    /* -webkit-line-clamp: 4; */
+    display: -webkit-box; /* Включаем флексбоксы */
+    -webkit-box-orient: vertical; /* Вертикальная ориентация */
+    overflow: hidden;
+    cursor: default;
+}
+.btn {
+    margin-top: 4px;
+    cursor: pointer;
+}

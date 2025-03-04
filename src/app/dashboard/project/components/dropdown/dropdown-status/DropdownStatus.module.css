@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.select {
+    width: 100%;
+    padding: 10px 4px;
+    background: none;
+    border: 1px dashed #fff;
+    color: #fff;
+}
+.title {
+    font-weight: bold;
+}

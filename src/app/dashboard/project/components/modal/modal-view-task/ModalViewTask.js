@@ -4,66 +4,42 @@ import { useState, useEffect } from 'react';
 import { Modal } from '@/components/modal/Modal'
 import { MyEditor } from '@/components/editor/MyEditor'
 import { MemberList } from '@/components/member/MemberList';
+import { TaskStatusDropdown } from '../../dropdown/dropdown-status/DropdownStatus';
+import { TaskPriorityDropdown } from '../../dropdown/dropdown-priority/DropdownPriority';
+import { TagInput } from '../../tag-input/TagInput';
+import { DescriptionBox } from '../../description/DescriptionBox';
+import { SubTaskInput } from '../../sub-task-input/SubTaskInput';
+
 
 export function ModalViewTask({ isModal, onClose, value, handleContent }) {
-    const [content, setContent] = useState(value);
-
-    useEffect(() => {
-        if (content !== value) {
-            setContent(value)
-        }
-
-    }, [value])
 
     const submitContent = () => {
-        handleContent(content)
+        handleContent("")
     };
 
     return (
         <Modal isOpen={isModal} onClose={onClose} className={styles.modal}>
-            <div>
+            <div className={styles.name}>
                 Задача 1
             </div>
-            <div>
+            <div className={styles.exp}>
                 +10 опыта
             </div>
             <div>
-                В процессе
+                <TaskStatusDropdown />
             </div>
             <div>
-                Высокий приоритет
+                <TaskPriorityDropdown />
             </div>
-            <div>
-                <div>Навыки:</div>
-                <div>
-                    <div>React</div>
-                    <div>HTML</div>
-                    <div>CSS</div>
 
-                </div>
-            </div>
-            <div>
-                <div>Описание</div>
-                <div>
-                    это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой"
-                    для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую йцу
-                    ыфраырваолви олврамолры врамо лр ыв ла орфы во лмл овы тмлов атимл овам йц д вы ла выо аоц уоа в
-                    лваощшцуак у куа ...
-                </div>
-                <div>Раскрыть</div>
-            </div>
+            <DescriptionBox />
             <div>
                 <div>
                     Под задачи:
                 </div>
-                <div>
-                    <button>Автоматически</button>
-                    <button>Ручное создание</button>
-                </div>
+                <SubTaskInput />
 
             </div>
-
-
 
             <div>
                 <div>Ответственный:</div>
@@ -72,6 +48,11 @@ export function ModalViewTask({ isModal, onClose, value, handleContent }) {
             <div>
                 <div>Исполнитель:</div>
                 <MemberList />
+            </div>
+
+            <div>
+                <div className={styles.title_tag}>Навыки:</div>
+                <TagInput />
             </div>
 
             <button onClick={() => submitContent()}>Сохранить</button>
