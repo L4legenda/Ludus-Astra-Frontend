@@ -21,10 +21,11 @@ export function ModalViewTask({ isModal, onClose, value, handleContent }) {
         <Modal isOpen={isModal} onClose={onClose} className={styles.modal}>
             <div className={styles.name}>
                 Задача 1
+                <div className={styles.exp}>
+                    +10 опыта
+                </div>
             </div>
-            <div className={styles.exp}>
-                +10 опыта
-            </div>
+
             <div>
                 <TaskStatusDropdown />
             </div>
@@ -34,7 +35,7 @@ export function ModalViewTask({ isModal, onClose, value, handleContent }) {
 
             <DescriptionBox />
             <div>
-                <div>
+                <div className={styles.subtask_title}>
                     Под задачи:
                 </div>
                 <SubTaskInput />
@@ -42,11 +43,11 @@ export function ModalViewTask({ isModal, onClose, value, handleContent }) {
             </div>
 
             <div>
-                <div>Ответственный:</div>
+                <div className={styles.responsible_title}>Ответственный:</div>
                 <MemberList />
             </div>
             <div>
-                <div>Исполнитель:</div>
+                <div className={styles.performers_title}>Исполнитель:</div>
                 <MemberList />
             </div>
 

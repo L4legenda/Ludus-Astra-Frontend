@@ -16,6 +16,7 @@ export function ModalLongText({ isModal, onClose, value, handleContent }) {
 
     const submitContent = () => {
         handleContent(content)
+        onClose(false)
     };
 
     return (

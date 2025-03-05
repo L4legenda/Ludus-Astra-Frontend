@@ -1,22 +1,64 @@
-.tagContainer {
+.taskContainer {
     width: 100%;
-    padding: 0;
+    padding: 10px;
+    padding-bottom: 0;
 }
 
-.tagsList {
+.inputRow {
     display: flex;
-    flex-wrap: wrap;
     gap: 8px;
-    margin-top: 10px;
 }
 
-.tag {
-    border: 1px dashed #e0e0e0;
-    padding: 4px 8px;
-    border-radius: 12px;
+.taskInput {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.taskInput:focus {
+    outline: none;
+    border-color: #0070f3;
+}
+
+.aiButton {
+    padding: 10px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 4px;
+}
+
+.tasksList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.task {
+    border: 1px dashed #fff;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.completed {
+    border: 1px dashed #3974a0;
+
+    color: #666;
+}
+
+.checkbox {
+    margin: 0;
+}
+
+.completed>.taskText {
+    text-decoration: line-through;
+}
+
+.taskText {
+    flex: 1;
 }
 
 .removeButton {
@@ -24,28 +66,11 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
-    padding: 0;
-    line-height: 1;
+    padding: 0 8px;
     color: #666;
 }
 
 .removeButton:hover {
     color: red;
     border: none;
-}
-.input_row {
-    display: flex;
-    gap: 10px;
-}
-.tagInput {
-    width: 100%;
-    font-size: 14px;
-}
-
-.tagInput:focus {
-    outline: none;
-    border-color: #0070f3;
-}
-.tag_btn_ai {
-    padding: 10px;
 }

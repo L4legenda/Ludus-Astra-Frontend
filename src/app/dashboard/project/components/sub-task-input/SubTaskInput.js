@@ -40,14 +40,14 @@ export function SubTaskInput() {
 
     return (
         <div className={styles.taskContainer}>
-            <div className={styles.input_row}>
+            <div className={styles.inputRow}>
                 <input
                     type="text"
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     onKeyDown={handleKeyDown}
                     placeholder="Введите задачу и нажмите Enter"
-                    className={styles.tagInput}
+                    className={styles.taskInput}
                 />
                 <button className={styles.aiButton}>
                     <FontAwesomeIcon icon={faWandMagicSparkles} />

@@ -1,6 +1,12 @@
 .title {
     margin-bottom: 5px;
     font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.icon_edit {
+    cursor: pointer;
 }
 .content {
     margin: 0; /* Убираем внешний отступ */
