@@ -2,6 +2,10 @@
     padding: 20px;
     height: 100%;
 }
+
+.container {
+    height: 100%;
+}
 .area_work {
     position: relative;
     margin-top: 40px;

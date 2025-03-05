@@ -5,12 +5,14 @@
     flex-direction: row;
     height: 100%;
 }
+
 .containerCreateProject {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
 .titleComponent {
     color: #eaeaea;
     font-size: 20px;
@@ -18,21 +20,25 @@
 }
 
 .form {
-    min-width: 400px;
+    width: 500px;
 }
+
 .row {
     display: flex;
     flex-direction: row;
 }
+
 .edit_description {
     color: #eaeaea;
     margin-left: auto;
     cursor: pointer;
 }
+
 .edit_description:hover {
     color: #fff;
-    
+
 }
+
 .edit_description:hover {
     color: #48a7ee;
 }

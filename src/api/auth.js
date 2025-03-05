@@ -1,6 +1,6 @@
 import { URL_HOST } from './base';
 
-export async function fetchSignup(data){
+export async function fetchSignup(data) {
     var response = await fetch(`${URL_HOST}/api/Auth/register/`, {
         method: 'POST',
         body: data,
@@ -25,6 +25,6 @@ export async function fetchSignin(data) {
         throw new Error(json.message);
     }
     const json = await response.json();
-    
+
     return json
 }

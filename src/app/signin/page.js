@@ -26,9 +26,9 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-        
+
         var success = false;
-        
+
         try {
             const res = await fetchSignin(formData);
             localStorage.setItem("token", res.token);

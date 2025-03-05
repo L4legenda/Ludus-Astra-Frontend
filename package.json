@@ -15,10 +15,14 @@
     "@tiptap/extension-bubble-menu": "^2.11.5",
     "@tiptap/extension-floating-menu": "^2.11.5",
     "@tiptap/pm": "^2.11.5",
+    "3d-force-graph": "^1.76.1",
+    "aframe": "^1.7.0",
     "html-to-draftjs": "^1.5.0",
     "next": "15.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-dropzone": "^14.3.6"
+    "react-dropzone": "^14.3.6",
+    "react-force-graph": "^1.47.3",
+    "three": "^0.174.0"
   }
 }

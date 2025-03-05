@@ -15,6 +15,8 @@ export default function ProjectCreate() {
         setFormData({ ...formData, description: newContent });
         setModalDescription(false);
     };
+    const [listMembers, setListMembers] = useState([]);
+    const [isModalAddMember, setIsModalAddMember] = useState(false)
 
     const [isModalDescription, setModalDescription] = useState(false);
 
@@ -39,6 +41,15 @@ export default function ProjectCreate() {
             setError(err.message);
         }
     };
+
+    const handleSelectedUser = (listUsers) => {
+        setListMembers([...listMembers, ...listUsers])
+    }
+
+    const handleDeleteMember = (index) => {
+        const _members = listMembers.filter((v, i) => i !== index)
+        setListMembers(_members)
+    }
 
     return (
         <main className={styles.container}>
@@ -76,7 +87,11 @@ export default function ProjectCreate() {
                         </div>
                         <div className='box-input'>
                             <label htmlFor="members">Участники:</label>
-                            <MemberList />
+                            <MemberList
+                                listMembers={listMembers}
+                                onAddMember={() => setIsModalAddMember(true)}
+                                onDelete={handleDeleteMember}
+                            />
                         </div>
                         <button type="submit" style={{ padding: '10px 20px' }}>
                             Создать
@@ -85,7 +100,15 @@ export default function ProjectCreate() {
                 </SubPanelContainer>
             </div>
             <div>
-                <SelecterUser />
+                {isModalAddMember && (
+                    <SelecterUser
+                        visible={isModalAddMember}
+                        onClose={() => setIsModalAddMember(false)}
+                        onSelectedUsers={handleSelectedUser}
+                        ignoreMembers={listMembers}
+                    />
+                )}
+
             </div>
         </main>
     )
