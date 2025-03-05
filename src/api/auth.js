@@ -6,7 +6,8 @@ export async function fetchSignup(data){
         body: data,
     })
     if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+        const json = await response.json()
+        throw new Error(json.message);
     }
     const json = await response.json();
     console.log(json);
@@ -20,9 +21,10 @@ export async function fetchSignin(data) {
         body: JSON.stringify(data),
     })
     if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
+        const json = await response.json()
+        throw new Error(json.message);
     }
     const json = await response.json();
-    console.log(json);
+    
     return json
 }

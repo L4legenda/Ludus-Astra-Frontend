@@ -1,6 +1,6 @@
 "use client"
 import { useState, useCallback } from 'react';
-
+import { redirect } from 'next/navigation';
 import Image from "next/image";
 import styles from "./page.module.css";
 import ButtonCosmic from "@/components/buttons/ButtonCosmic";
@@ -38,8 +38,18 @@ export default function Home() {
     if (photo) {
       data.append('Avatar', photo);
     }
+    var success = false
+    try {
+      var res = await fetchSignup(data);
+      setError(null)
+      success = true
+    } catch (error) {
+      setError(error.message)
+    }
 
-    await fetchSignup(data);
+    if (success) redirect("/signin")
+
+
   }
 
   return (
@@ -89,7 +99,10 @@ export default function Home() {
                   style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
                 />
               </div>
-              <UploadFile title={"Фотография (опционально):"} setPhoto={setPhoto}/>
+              <UploadFile title={"Фотография (опционально):"} setPhoto={setPhoto} />
+              {error && (<div className={styles.error_block}>
+                {error}
+              </div>)}
 
               <button type="submit" style={{ padding: '10px 20px' }}>
                 Зарегистрироваться

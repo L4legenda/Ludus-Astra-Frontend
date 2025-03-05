@@ -8,6 +8,7 @@ import Link from "next/link";
 import { fetchSignin } from '@/api/auth';
 import { BgCosmic } from '@/components/cosmic/BgCosmic';
 import { PanelContainer } from '@/components/panel/PanelContainer';
+import { redirect } from 'next/navigation';
 
 
 export default function Login() {
@@ -25,14 +26,18 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-
+        
+        var success = false;
+        
         try {
-            const res = await fetchSignin(formData)
-
+            const res = await fetchSignin(formData);
+            localStorage.setItem("token", res.token);
             setSuccess(true);
+            success = true;
         } catch (err) {
             setError(err.message);
         }
+        if (success) redirect("/dashboard")
     };
 
     return (
@@ -41,49 +46,38 @@ export default function Login() {
                 <main className={styles.main}>
                     <h1 className={styles.titlePage}>Авторизация</h1>
                     <PanelContainer>
+                        <form onSubmit={handleSubmit} className={styles.form}>
+                            <div className='box-input'>
+                                <label htmlFor="email">Email:</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            <div className='box-input'>
+                                <label htmlFor="password">Пароль:</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                />
+                            </div>
+                            {error && (<div className={styles.error_block}>
+                                {error}
+                            </div>)}
+                            <button type="submit" style={{ padding: '10px 20px' }}>
+                                Войти
+                            </button>
+                        </form>
 
-                        {error && <p style={{ color: 'red' }}>{error}</p>}
-                        {success ? (
-                            <p style={{ color: 'green' }}>Вы успешно авторизовались!</p>
-                        ) : (
-                            <form onSubmit={handleSubmit} className={styles.form}>
-                                <div className='box-input'>
-                                    <label htmlFor="email">Email:</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        value={formData.email}
-                                        onChange={handleChange}
-                                        required
-                                        style={{
-                                            width: '100%',
-                                            padding: '8px',
-                                            boxSizing: 'border-box',
-                                        }}
-                                    />
-                                </div>
-                                <div className='box-input'>
-                                    <label htmlFor="password">Пароль:</label>
-                                    <input
-                                        type="password"
-                                        id="password"
-                                        name="password"
-                                        value={formData.password}
-                                        onChange={handleChange}
-                                        required
-                                        style={{
-                                            width: '100%',
-                                            padding: '8px',
-                                            boxSizing: 'border-box',
-                                        }}
-                                    />
-                                </div>
-                                <button type="submit" style={{ padding: '10px 20px' }}>
-                                    Войти
-                                </button>
-                            </form>
-                        )}
+
 
                     </PanelContainer>
                 </main>
