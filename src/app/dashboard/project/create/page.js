@@ -7,7 +7,8 @@ import { SelecterUser } from '@/components/user/SelecterUser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { ModalLongText } from '../components/modal/modal-long-text/ModalLongText';
-
+import { fetchAddMemberToProject, fetchCreateProject } from '@/api/project';
+import { redirect } from 'next/navigation';
 
 export default function ProjectCreate() {
 
@@ -17,6 +18,7 @@ export default function ProjectCreate() {
     };
     const [listMembers, setListMembers] = useState([]);
     const [isModalAddMember, setIsModalAddMember] = useState(false)
+    const [error, setError] = useState(null)
 
     const [isModalDescription, setModalDescription] = useState(false);
 
@@ -32,14 +34,23 @@ export default function ProjectCreate() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError(null);
-
+        var success = false;
+        var id_project = null;
         try {
-            const res = await fetchSignin(formData)
+            const resCreateProject = await fetchCreateProject(formData)
+            id_project = resCreateProject.projectId;
 
-            setSuccess(true);
+            for (const member of listMembers) {
+                await fetchAddMemberToProject(id_project, {
+                    userId: member.id,
+                    "role": null,
+                })
+            }
+            success = true
         } catch (err) {
             setError(err.message);
         }
+        if (success) redirect(`/dashboard/project/${id_project}`)
     };
 
     const handleSelectedUser = (listUsers) => {

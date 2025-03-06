@@ -4,13 +4,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFire, faPersonWalking, faPersonHiking } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '../components/task/Task';
 import { ModalViewTask } from '../components/modal/modal-view-task/ModalViewTask';
+import { ModalCreateTask } from '../components/modal/modal-create-task/ModalCreateTask';
 import { useState } from 'react';
 export default function ProjectView({ params }) {
     const [isModalViewTask, setModalViewTask] = useState(false)
+    const [isModalCreateTask, setModalCreateTask] = useState(false)
     return (
         <div className={styles.container}>
             <div className={styles.header}>
-                <button className={styles.btn_crate_task}>Создать задачу</button>
+                <button
+                    className={styles.btn_crate_task}
+                    onClick={() => setModalCreateTask(true)}>
+                    Создать задачу
+                </button>
+                {isModalCreateTask && (
+                    <ModalCreateTask isModal={isModalCreateTask} onClose={() => setModalCreateTask(false)} />
+                )}
+
+
+
 
                 <input type='search' placeholder='Поиск' className={styles.input_search} />
             </div>
@@ -22,13 +34,13 @@ export default function ProjectView({ params }) {
                 <div className={styles.task_box}>
                     <div className={styles.task_box_border}></div>
                     <div className={styles.task_box_content}>
-                        <Task onClick={()=>setModalViewTask(true)}/>
-                        <Task onClick={()=>setModalViewTask(true)}/>
-                        <Task onClick={()=>setModalViewTask(true)}/>
-                        <Task onClick={()=>setModalViewTask(true)}/>
-                        <Task onClick={()=>setModalViewTask(true)}/>
-                        <Task onClick={()=>setModalViewTask(true)}/>
-                        <Task onClick={()=>setModalViewTask(true)}/>
+                        <Task onClick={() => setModalViewTask(true)} />
+                        <Task onClick={() => setModalViewTask(true)} />
+                        <Task onClick={() => setModalViewTask(true)} />
+                        <Task onClick={() => setModalViewTask(true)} />
+                        <Task onClick={() => setModalViewTask(true)} />
+                        <Task onClick={() => setModalViewTask(true)} />
+                        <Task onClick={() => setModalViewTask(true)} />
                     </div>
                 </div>
                 <div className={styles.priority}>
@@ -38,13 +50,13 @@ export default function ProjectView({ params }) {
                 <div className={styles.task_box}>
                     <div className={styles.task_box_border}></div>
                     <div className={styles.task_box_content}>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
                     </div>
                 </div>
 
@@ -55,17 +67,17 @@ export default function ProjectView({ params }) {
                 <div className={styles.task_box}>
                     <div className={styles.task_box_border}></div>
                     <div className={styles.task_box_content}>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
-                        <Task/>
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
+                        <Task />
                     </div>
                 </div>
             </div>
-            <ModalViewTask isModal={isModalViewTask} onClose={()=>setModalViewTask(false)}/>
+            <ModalViewTask isModal={isModalViewTask} onClose={() => setModalViewTask(false)} />
         </div>
     )
 }

@@ -21,7 +21,6 @@ export function Member({ avatar = "/avatars/Avatar.png", lvl = 1, onDelete, user
             <div className={styles.lvl}><LvlNum lvl={lvl} /></div>
             {onDelete && (<div className={styles.close} onClick={()=>onDelete()}>
                 <FontAwesomeIcon icon={faClose} />
-
             </div>)}
 
         </div>
