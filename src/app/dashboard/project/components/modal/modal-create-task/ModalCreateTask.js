@@ -19,9 +19,10 @@ export function ModalCreateTask({ isModal, onClose, value, handleContent }) {
 
     return (
         <Modal isOpen={isModal} onClose={onClose} className={styles.modal}>
-            <div className={styles.name}>
-                Название
-                <input type='text' />
+            <div className={styles.container_name}>
+                <div className={styles.name}>Название</div>
+
+                <input type='text' placeholder='Введите название' />
             </div>
 
             <div>

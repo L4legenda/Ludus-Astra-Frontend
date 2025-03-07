@@ -28,3 +28,8 @@
     font-weight: bold;
     margin-bottom: 6px;
 }
+
+.container_name {
+    display: flex;
+    flex-direction: column;
+}
