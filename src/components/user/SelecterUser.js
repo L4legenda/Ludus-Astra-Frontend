@@ -8,7 +8,7 @@ import { Member } from '../member/Member';
 import { useEffect, useState } from 'react';
 import { fetchSearch } from '@/api/user';
 
-export function SelecterUser({ visible, onClose, onSelectedUsers, ignoreMembers }) {
+export function SelecterUser({ visible, onClose, onSelectedUsers, ignoreMembers, isRightArrow=false }) {
 
     const [inputSearch, setInputSearch] = useState("")
 
@@ -70,7 +70,8 @@ export function SelecterUser({ visible, onClose, onSelectedUsers, ignoreMembers 
 
     return visible && (
         <div className={styles.baseContainer}>
-            <FontAwesomeIcon icon={faArrowRight} className={styles.arrow} />
+            {isRightArrow ? <FontAwesomeIcon icon={faArrowRight} className={styles.arrow} /> : null}
+
             <div>
                 <h1 className={styles.titleComponent}>Добавление пользователя</h1>
                 <SubPanelContainer className={styles.container}>

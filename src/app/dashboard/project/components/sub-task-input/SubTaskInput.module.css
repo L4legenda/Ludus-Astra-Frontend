@@ -7,6 +7,7 @@
 .inputRow {
     display: flex;
     gap: 8px;
+    margin-bottom: 10px;
 }
 
 .taskInput {

@@ -26,7 +26,7 @@ export function UploadFile({ title, setPhoto }) {
 
     return (
         <div>
-            <label className={styles.titleComponent}>Фотография (опционально):</label>
+            <label className={styles.titleComponent}>{title}</label>
             <div
                 {...getRootProps()}
                 className={styles.box_upload}

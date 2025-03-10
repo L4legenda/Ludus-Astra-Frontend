@@ -5,9 +5,22 @@ import styles from './TagInput.module.css'; // Предполагается, ч�
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 
-export function TagInput() {
+export function TagInput({ description }) {
     const [tags, setTags] = useState([]);
     const [inputValue, setInputValue] = useState('');
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleGenerateTag = async () => {
+        try {
+            setIsLoading(true)
+            const response = await fetchGenerateSubTask(description)
+            setTags(response.map((v, i) => ({ text: v, completed: false })))
+            setIsLoading(false)
+        } catch (e) {
+            setIsLoading(false)
+        }
+    }
 
     // Обработка ввода при нажатии Enter или запятой
     const handleKeyDown = (e) => {
@@ -41,9 +54,10 @@ export function TagInput() {
                     onKeyDown={handleKeyDown}
                     placeholder="Введите навык и нажмите Enter"
                     className={styles.tagInput}
+                    disabled={isLoading}
                 />
-                <button className={styles.tag_btn_ai}>
-                    <FontAwesomeIcon icon={faWandMagicSparkles} />
+                <button className={styles.aiButton} onClick={() => handleGenerateTag()} disabled={isLoading}>
+                    {isLoading ? <Loader /> : <FontAwesomeIcon icon={faWandMagicSparkles} />}
                 </button>
             </div>
 

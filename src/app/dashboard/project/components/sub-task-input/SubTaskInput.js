@@ -4,10 +4,25 @@ import { useState } from 'react';
 import styles from './SubTaskInput.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
+import { fetchGenerateSubTask } from '@/api/sub-task';
+import { Loader } from '@/components/loader/Loader';
 
-export function SubTaskInput() {
+export function SubTaskInput({ description }) {
     const [tasks, setTasks] = useState([]);
     const [inputValue, setInputValue] = useState('');
+
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleGenerateSubTasks = async () => {
+        try {
+            setIsLoading(true)
+            const response = await fetchGenerateSubTask(description)
+            setTasks(response.map((v, i) => ({ text: v, completed: false })))
+            setIsLoading(false)
+        } catch (e) {
+            setIsLoading(false)
+        }
+    }
 
     // Обработка ввода при нажатии Enter
     const handleKeyDown = (e) => {
@@ -48,9 +63,10 @@ export function SubTaskInput() {
                     onKeyDown={handleKeyDown}
                     placeholder="Введите задачу и нажмите Enter"
                     className={styles.taskInput}
+                    disabled={isLoading}
                 />
-                <button className={styles.aiButton}>
-                    <FontAwesomeIcon icon={faWandMagicSparkles} />
+                <button className={styles.aiButton} onClick={() => handleGenerateSubTasks()} disabled={isLoading}>
+                    {isLoading ? <Loader /> : <FontAwesomeIcon icon={faWandMagicSparkles} />}
                 </button>
             </div>
 

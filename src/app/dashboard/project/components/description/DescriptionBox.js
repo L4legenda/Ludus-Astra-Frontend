@@ -5,7 +5,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { ModalLongText } from "../modal/modal-long-text/ModalLongText";
 
 
-export function DescriptionBox() {
+export function DescriptionBox({value, onChange}) {
     const [content, setContent] = useState("")
 
     const [visibleContent, setVisibleContent] = useState(false);
@@ -13,7 +13,9 @@ export function DescriptionBox() {
 
     const handleContent = (v) => {
         setContent(v)
+        onChange(v)
     }
+
     return (
         <div>
             <div className={styles.title}>
@@ -22,10 +24,10 @@ export function DescriptionBox() {
                 <FontAwesomeIcon icon={faPenToSquare} className={styles.icon_edit} onClick={() => setModalDescription(!isModalDescription)} />
                 <ModalLongText isModal={isModalDescription} onClose={() => setModalDescription(false)} value={content} handleContent={handleContent} />
             </div>
-            <div className={styles.content} style={{ "WebkitLineClamp": visibleContent ? "none" : 4 }}>
+            <pre className={styles.content} style={{ "WebkitLineClamp": visibleContent ? "none" : 4 }}>
                 {content}
-                
-            </div>
+
+            </pre>
             <div
                 className={styles.btn}
                 onClick={() => setVisibleContent(!visibleContent)}>

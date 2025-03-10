@@ -1,13 +1,22 @@
+import { fetchGetStatusTask } from '@/api/task';
 import styles from './DropdownStatus.module.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function TaskStatusDropdown({ className, style, labelStyle, selectStyle }) {
-    const [status, setStatus] = useState('');
+    const [status, setStatus] = useState(0);
+    const [listStatus, setListStatus] = useState([])
 
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
         // Здесь можно добавить логику для обновления статуса задачи
     };
+    const handleFetchGetStatus = async () => {
+        const response = await fetchGetStatusTask();
+        setListStatus(response)
+    }
+    useEffect(() => {
+        handleFetchGetStatus()
+    }, [])
 
     return (
         <div className={`${styles.container} ${className}`} style={style}>
@@ -22,9 +31,11 @@ export function TaskStatusDropdown({ className, style, labelStyle, selectStyle }
                 className={styles.select}
             >
                 <option value="">Выберите статус</option>
-                <option value="todo">To Do</option>
-                <option value="in-progress">In Progress</option>
-                <option value="done">Done</option>
+                {listStatus.map((v, i) => (
+                    <option key={i} value={v.id}>
+                        {v.name}
+                    </option>
+                ))}
             </select>
         </div>
     );
