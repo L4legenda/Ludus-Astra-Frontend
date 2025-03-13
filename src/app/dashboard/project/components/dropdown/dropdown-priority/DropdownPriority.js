@@ -2,8 +2,8 @@ import { fetchGetPriorityTask } from '@/api/task';
 import styles from './DropdownPriority.module.css';
 import { useEffect, useState } from 'react';
 
-export function TaskPriorityDropdown({ className, style, labelStyle, selectStyle, onChange }) {
-    const [status, setStatus] = useState('');
+export function TaskPriorityDropdown({ className, style, labelStyle, selectStyle, value,  onChange }) {
+    const [status, setStatus] = useState(value || 0);
     const [listPriority, setListPriority] = useState([]);
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
@@ -30,7 +30,6 @@ export function TaskPriorityDropdown({ className, style, labelStyle, selectStyle
                 style={selectStyle}
                 className={styles.select}
             >
-                <option value="">Выберите приоритет</option>
                 {listPriority.map((v, i) => (
                     <option key={i} value={v.id}>{v.name}</option>
                 ))}

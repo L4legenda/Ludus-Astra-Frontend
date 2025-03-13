@@ -1,10 +1,20 @@
 import styles from './Task.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ModalViewTask } from '../modal/modal-view-task/ModalViewTask';
+import { fetchGetStatusTask } from '@/api/task';
 
 export function Task({ data }) {
     const [isModalViewTask, setModalViewTask] = useState(false)
 
+    const [listStatus, setListStatus] = useState([])
+
+    const handleFetchGetStatus = async () => {
+        const response = await fetchGetStatusTask();
+        setListStatus(response)
+    }
+    useEffect(() => {
+        handleFetchGetStatus()
+    }, [])
 
     const formateDate = (date) => {
         const day = date.getDate(); // День
@@ -16,21 +26,7 @@ export function Task({ data }) {
     }
 
     const formateStatus = (status) => {
-        switch (status) {
-            case "New":
-                return <div className={`${styles.type_process} ${styles.type_new}`}>Новый</div>
-            case "InProgress":
-                return <div className={`${styles.type_process} ${styles.type_progress}`}>В процессе</div>
-            case "OnReview":
-                return <div className={`${styles.type_process} ${styles.type_review}`}>На проверке</div>
-            case "Completed":
-                return <div className={`${styles.type_process} ${styles.type_completed}`}>Завершена</div>
-            case "Cancelled":
-                return <div className={`${styles.type_process} ${styles.type_cancelled}`}>Отменена</div>
-            default:
-                return null;
-        }
-
+        return listStatus?.[status]?.name
     }
 
     return (

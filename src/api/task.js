@@ -67,3 +67,22 @@ export async function fetchCreateTask(data) {
     console.log(json);
     return json
 }
+
+
+export async function fetchCreateTask(id_task, data) {
+    var response = await fetch(`${URL_HOST}/api/tasks/${id_task}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json' ,
+            "Authorization": `Bearer ${get_user_token()}`,
+        },
+        body: JSON.stringify(data)
+    })
+    if (!response.ok) {
+        const json = await response.json()
+        throw new Error(json.message);
+    }
+    const json = await response.json();
+    console.log(json);
+    return json
+}

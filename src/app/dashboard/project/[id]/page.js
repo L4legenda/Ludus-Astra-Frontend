@@ -17,13 +17,13 @@ export default function ProjectView({ params }) {
     const [listPriorityTask, setListPriorityTask] = useState([])
 
     const listHighPriority = listPriorityTask.filter((v, i) => (
-        v?.priority === 2
+        v?.priority === 0
     ))
     const listMiddlePriority = listPriorityTask.filter((v, i) => (
         v?.priority === 1
     ))
     const listLowPriority = listPriorityTask.filter((v, i) => (
-        v?.priority === 0
+        v?.priority === 2
     ))
 
     const handleListTask = async () => {

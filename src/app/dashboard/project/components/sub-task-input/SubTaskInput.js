@@ -14,7 +14,7 @@ export function SubTaskInput({ data, description, onChange }) {
     const [isLoading, setIsLoading] = useState(false);
 
     const handleDataSubTasks = async () => {
-        const _subTasks = data?.subTasks;
+        const _subTasks = data;
         if (!_subTasks) return;
         try {
             const json_subTasks = JSON.parse(_subTasks);

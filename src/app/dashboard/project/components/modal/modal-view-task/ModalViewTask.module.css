@@ -4,10 +4,16 @@
     height: 600px;
     overflow: auto;
 }
-
+.container_name {
+    display: flex;
+    flex-direction: column;
+}
 .name {
     font-size: 16px;
     font-weight: bold;
+}
+.input_name {
+    width: 100%;
 }
 .exp {
     font-size: 14px;
@@ -27,4 +33,20 @@
 .performers_title {
     font-weight: bold;
     margin-bottom: 6px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+.btnPen {
+    margin-left: auto;
+    cursor: pointer;
+}
+
+.btn_create {
+    padding: 10px 0;;
 }
