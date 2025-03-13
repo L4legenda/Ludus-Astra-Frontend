@@ -2,12 +2,12 @@ import { fetchGetPriorityTask } from '@/api/task';
 import styles from './DropdownPriority.module.css';
 import { useEffect, useState } from 'react';
 
-export function TaskPriorityDropdown({ className, style, labelStyle, selectStyle }) {
+export function TaskPriorityDropdown({ className, style, labelStyle, selectStyle, onChange }) {
     const [status, setStatus] = useState('');
     const [listPriority, setListPriority] = useState([]);
     const handleStatusChange = (event) => {
         setStatus(event.target.value);
-        // Здесь можно добавить логику для обновления статуса задачи
+        onChange && onChange(event.target.value)
     };
 
     const handleFetchGetPriority = async () => {

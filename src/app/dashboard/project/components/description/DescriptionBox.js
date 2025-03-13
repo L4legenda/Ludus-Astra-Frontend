@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from "./DescriptionBox.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,10 @@ export function DescriptionBox({value, onChange}) {
         setContent(v)
         onChange(v)
     }
+
+    useEffect(()=>{
+        setContent(value)
+    }, [])
 
     return (
         <div>

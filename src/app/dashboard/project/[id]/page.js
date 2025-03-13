@@ -5,10 +5,30 @@ import { faFire, faPersonWalking, faPersonHiking } from '@fortawesome/free-solid
 import { Task } from '../components/task/Task';
 import { ModalViewTask } from '../components/modal/modal-view-task/ModalViewTask';
 import { ModalCreateTask } from '../components/modal/modal-create-task/ModalCreateTask';
-import { useState } from 'react';
+import { useEffect, useState, use } from 'react';
+import { fetchGetListTask } from '@/api/task';
 export default function ProjectView({ params }) {
-    const [isModalViewTask, setModalViewTask] = useState(false)
+    const unwrappedParams = use(params); // Разворачиваем промис
+    const id_project = unwrappedParams.id; // Теперь доступ к id безопасен
+    const [search, setSearch] = useState("");
+
     const [isModalCreateTask, setModalCreateTask] = useState(false)
+
+    const [listHighPriorityTask, setListHighPriorityTask] = useState([])
+
+
+    const handleListTask = async () => {
+        const response = await fetchGetListTask(id_project, search);
+        if (response.length != listHighPriorityTask.length) {
+            setListHighPriorityTask(response);
+        }
+
+    }
+
+    useEffect(() => {
+        handleListTask()
+    })
+
     return (
         <div className={styles.container}>
             <div className={styles.header}>
@@ -18,13 +38,16 @@ export default function ProjectView({ params }) {
                     Создать задачу
                 </button>
                 {isModalCreateTask && (
-                    <ModalCreateTask isModal={isModalCreateTask} onClose={() => setModalCreateTask(false)} />
+                    <ModalCreateTask project_id={id_project} isModal={isModalCreateTask} onClose={() => setModalCreateTask(false)} />
                 )}
 
-
-
-
-                <input type='search' placeholder='Поиск' className={styles.input_search} />
+                <input
+                    type='search'
+                    placeholder='Поиск'
+                    className={styles.input_search}
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
             </div>
             <div className={styles.container_tasks}>
                 <div className={styles.priority}>
@@ -34,13 +57,10 @@ export default function ProjectView({ params }) {
                 <div className={styles.task_box}>
                     <div className={styles.task_box_border}></div>
                     <div className={styles.task_box_content}>
-                        <Task onClick={() => setModalViewTask(true)} />
-                        <Task onClick={() => setModalViewTask(true)} />
-                        <Task onClick={() => setModalViewTask(true)} />
-                        <Task onClick={() => setModalViewTask(true)} />
-                        <Task onClick={() => setModalViewTask(true)} />
-                        <Task onClick={() => setModalViewTask(true)} />
-                        <Task onClick={() => setModalViewTask(true)} />
+                        {listHighPriorityTask.map((v, i) => (
+                            v?.priority === 2 ? <Task key={i} data={v} /> : null
+                        ))}
+
                     </div>
                 </div>
                 <div className={styles.priority}>
@@ -50,13 +70,9 @@ export default function ProjectView({ params }) {
                 <div className={styles.task_box}>
                     <div className={styles.task_box_border}></div>
                     <div className={styles.task_box_content}>
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
+                        {listHighPriorityTask.map((v, i) => (
+                            v?.priority === 1 ? <Task key={i} data={v} /> : null
+                        ))}
                     </div>
                 </div>
 
@@ -67,17 +83,13 @@ export default function ProjectView({ params }) {
                 <div className={styles.task_box}>
                     <div className={styles.task_box_border}></div>
                     <div className={styles.task_box_content}>
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
-                        <Task />
+                        {listHighPriorityTask.map((v, i) => (
+                            v?.priority === 0 ? <Task key={i} data={v} /> : null
+                        ))}
                     </div>
                 </div>
             </div>
-            <ModalViewTask isModal={isModalViewTask} onClose={() => setModalViewTask(false)} />
+
         </div>
     )
 }

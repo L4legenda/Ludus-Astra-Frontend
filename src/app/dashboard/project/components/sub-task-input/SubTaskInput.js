@@ -1,23 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './SubTaskInput.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import { fetchGenerateSubTask } from '@/api/sub-task';
 import { Loader } from '@/components/loader/Loader';
 
-export function SubTaskInput({ description }) {
+export function SubTaskInput({ data, description, onChange }) {
     const [tasks, setTasks] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
     const [isLoading, setIsLoading] = useState(false);
 
+    const handleDataSubTasks = async () => {
+        const _subTasks = data?.subTasks;
+        if (!_subTasks) return;
+        try {
+            const json_subTasks = JSON.parse(_subTasks);
+            setTasks(json_subTasks);
+        } catch (e) {
+
+        }
+    }
+
     const handleGenerateSubTasks = async () => {
         try {
             setIsLoading(true)
             const response = await fetchGenerateSubTask(description)
-            setTasks(response.map((v, i) => ({ text: v, completed: false })))
+            const _tasks = response.map((v, i) => ({ text: v, completed: false }))
+            setTasks(_tasks)
+            onChange(_tasks)
             setIsLoading(false)
         } catch (e) {
             setIsLoading(false)
@@ -36,22 +49,32 @@ export function SubTaskInput({ description }) {
     const addTask = () => {
         const trimmedValue = inputValue.trim();
         if (trimmedValue && !tasks.some(task => task.text === trimmedValue)) {
-            setTasks([...tasks, { text: trimmedValue, completed: false }]);
+            const _tasks = [...tasks, { text: trimmedValue, completed: false }]
+            setTasks(_tasks);
+            onChange(_tasks);
             setInputValue('');
         }
     };
 
     // Удаление задачи
     const removeTask = (taskToRemove) => {
-        setTasks(tasks.filter(task => task.text !== taskToRemove));
+        const _tasks = tasks.filter(task => task.text !== taskToRemove)
+        setTasks(_tasks);
+        onChange(_tasks);
     };
 
     // Переключение статуса выполнения
     const toggleTaskStatus = (taskText) => {
-        setTasks(tasks.map(task =>
+        const _tasks = tasks.map(task =>
             task.text === taskText ? { ...task, completed: !task.completed } : task
-        ));
+        )
+        setTasks(_tasks);
+        onChange(_tasks);
     };
+
+    useEffect(() => {
+        handleDataSubTasks()
+    }, [])
 
     return (
         <div className={styles.taskContainer}>

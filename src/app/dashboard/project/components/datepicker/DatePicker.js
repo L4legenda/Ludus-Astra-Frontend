@@ -17,7 +17,7 @@ export const MyDatePicker = ({onChange}) => {
     }
 
     useState(()=>{
-        handleDate(new Date())
+        setStartDate(new Date())
     }, [])
 
     return (

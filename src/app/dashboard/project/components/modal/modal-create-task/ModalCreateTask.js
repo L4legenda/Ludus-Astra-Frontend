@@ -12,14 +12,19 @@ import { DescriptionBox } from '../../description/DescriptionBox';
 import { SubTaskInput } from '../../sub-task-input/SubTaskInput';
 import { MyDatePicker } from '../../datepicker/DatePicker';
 import { UploadFile } from '@/components/upload_file/UploadFIle';
+import { fetchCreateTask } from '@/api/task';
 
-export function ModalCreateTask({ isModal, onClose, value, handleContent }) {
+export function ModalCreateTask({ project_id, isModal, onClose, value, handleContent }) {
+    const [name, setName] = useState("")
     const [description, setDescription] = useState("")
+    const [deadline, setDeadline] = useState(new Date())
+    const [priority, setPriority] = useState(0);
+    const [subTasks, setSubTasks] = useState([])
     const [isResponsibleMember, setIsResponsibleMember] = useState(false);
     const [listResponsibleMember, setListResponsibleMember] = useState([]);
 
     const [isPerformersMember, setIsPerformersMember] = useState(false);
-    const [listPerformersMember, setListPerformersMember] = useState([[]]);
+    const [listPerformersMember, setListPerformersMember] = useState([]);
 
     const [files, setFiles] = useState();
 
@@ -41,27 +46,43 @@ export function ModalCreateTask({ isModal, onClose, value, handleContent }) {
         setListPerformersMember([...listPerformersMember, ...listUsers])
     }
 
-    const submitContent = () => {
-        handleContent("")
+    const submitContent = async () => {
+        await fetchCreateTask({
+            "projectId": project_id,
+            "title": name,
+            "description": description,
+            "deadline": deadline.toISOString(),
+            "priority": parseInt(priority),
+            "assigneeIds": listPerformersMember.map((v, i) => v.id),
+            "subTasks": JSON.stringify(subTasks)
+        });
+        onClose()
+
     };
+
 
     return (
         <Modal isOpen={isModal} onClose={onClose} className={styles.modal}>
             <div className={styles.container_name}>
                 <div className={styles.name}>Название</div>
 
-                <input type='text' placeholder='Введите название' />
+                <input
+                    type='text'
+                    placeholder='Введите название'
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
             </div>
 
             <div>
                 <div className={styles.deadline}>Дедлайн</div>
-                <MyDatePicker />
+                <MyDatePicker onChange={setDeadline} />
             </div>
-            <div>
+            {/* <div>
                 <TaskStatusDropdown />
-            </div>
+            </div> */}
             <div>
-                <TaskPriorityDropdown />
+                <TaskPriorityDropdown onChange={(v)=>setPriority(v)} />
             </div>
 
             <DescriptionBox value={description} onChange={setDescription} />
@@ -69,16 +90,16 @@ export function ModalCreateTask({ isModal, onClose, value, handleContent }) {
                 <div className={styles.subtask_title}>
                     Под задачи:
                 </div>
-                <SubTaskInput description={description} />
+                <SubTaskInput description={description} onChange={setSubTasks} />
 
             </div>
             <div>
-                <UploadFile
+                {/* <UploadFile
                     title={"Файлы"}
                     setPhoto={setFiles}
-                />
+                /> */}
             </div>
-            <div>
+            {/* <div>
                 <div className={styles.responsible_title}>Ответственный:</div>
                 <MemberList
                     listMembers={listResponsibleMember}
@@ -93,7 +114,7 @@ export function ModalCreateTask({ isModal, onClose, value, handleContent }) {
                     />
                 </Modal>
 
-            </div>
+            </div> */}
 
             <div>
                 <div className={styles.performers_title}>Исполнитель:</div>
@@ -114,7 +135,7 @@ export function ModalCreateTask({ isModal, onClose, value, handleContent }) {
 
 
 
-            <button onClick={() => submitContent()}>Создать</button>
+            <button onClick={() => submitContent()} className={styles.btn_create}>Создать</button>
         </Modal>
     )
 }

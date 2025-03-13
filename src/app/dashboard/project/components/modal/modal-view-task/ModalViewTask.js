@@ -11,7 +11,7 @@ import { DescriptionBox } from '../../description/DescriptionBox';
 import { SubTaskInput } from '../../sub-task-input/SubTaskInput';
 
 
-export function ModalViewTask({ isModal, onClose, value, handleContent }) {
+export function ModalViewTask({ isModal, onClose, data, handleContent }) {
 
     const submitContent = () => {
         handleContent("")
@@ -20,9 +20,9 @@ export function ModalViewTask({ isModal, onClose, value, handleContent }) {
     return (
         <Modal isOpen={isModal} onClose={onClose} className={styles.modal}>
             <div className={styles.name}>
-                Задача 1
+                {data?.title}
                 <div className={styles.exp}>
-                    +10 опыта
+                    +{data?.exp} опыта
                 </div>
             </div>
 
@@ -33,28 +33,20 @@ export function ModalViewTask({ isModal, onClose, value, handleContent }) {
                 <TaskPriorityDropdown />
             </div>
 
-            <DescriptionBox />
+            <DescriptionBox value={data?.description} />
             <div>
                 <div className={styles.subtask_title}>
                     Под задачи:
                 </div>
-                <SubTaskInput />
+                <SubTaskInput data={data} />
 
             </div>
 
-            <div>
-                <div className={styles.responsible_title}>Ответственный:</div>
-                <MemberList />
-            </div>
             <div>
                 <div className={styles.performers_title}>Исполнитель:</div>
                 <MemberList />
             </div>
 
-            <div>
-                <div className={styles.title_tag}>Навыки:</div>
-                <TagInput />
-            </div>
 
             <button onClick={() => submitContent()}>Сохранить</button>
         </Modal>
