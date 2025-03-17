@@ -8,7 +8,7 @@ import { ForceGraph3DVanilla } from "@/components/force-graph/ForceGraph3DCompon
 export default function Dashboard() {
     return (
         <div className={styles.container}>
-            <ForceGraph3DVanilla />
+            {/* <ForceGraph3DVanilla /> */}
         </div>
     )
 }
