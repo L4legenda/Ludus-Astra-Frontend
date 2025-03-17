@@ -50,3 +50,7 @@
 .btn_create {
     padding: 10px 0;;
 }
+.deadline {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

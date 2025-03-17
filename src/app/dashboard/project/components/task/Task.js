@@ -2,6 +2,7 @@ import styles from './Task.module.css';
 import { useState, useEffect } from 'react';
 import { ModalViewTask } from '../modal/modal-view-task/ModalViewTask';
 import { fetchGetStatusTask } from '@/api/task';
+import {URL_HOST} from '@/api/base'
 
 export function Task({ data }) {
     const [isModalViewTask, setModalViewTask] = useState(false)
@@ -42,8 +43,13 @@ export function Task({ data }) {
                     {formateDate(new Date(data?.deadline))}
                 </div>
                 <div className={styles.user}>
-                    <img src="/avatars/Avatar.png" alt="" className={styles.user_avatar} />
-                    <div className={styles.user_name}>Фокша А.С.</div>
+                    {data?.assignees?.[0]?.profilePictureUrl && (
+                        <img src={URL_HOST + data?.assignees?.[0]?.profilePictureUrl} alt="" className={styles.user_avatar} />
+                    )}
+                    {!data?.assignees?.[0]?.profilePictureUrl && (
+                        <img src={"/question-mark.jpg"} alt="" className={styles.user_avatar} />
+                    )}
+                    <div className={styles.user_name}>{data?.assignees?.[0]?.name}</div>
                 </div>
                 <div className={styles.process}>
                     {formateStatus(data?.status)}

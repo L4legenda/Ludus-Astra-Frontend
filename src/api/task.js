@@ -69,9 +69,9 @@ export async function fetchCreateTask(data) {
 }
 
 
-export async function fetchCreateTask(id_task, data) {
+export async function fetchUpdateTask(id_task, data) {
     var response = await fetch(`${URL_HOST}/api/tasks/${id_task}/`, {
-        method: 'POST',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json' ,
             "Authorization": `Bearer ${get_user_token()}`,

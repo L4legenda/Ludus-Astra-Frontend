@@ -11,7 +11,6 @@ import { SelecterUser } from '@/components/user/SelecterUser';
 import { DescriptionBox } from '../../description/DescriptionBox';
 import { SubTaskInput } from '../../sub-task-input/SubTaskInput';
 import { MyDatePicker } from '../../datepicker/DatePicker';
-import { UploadFile } from '@/components/upload_file/UploadFIle';
 import { fetchCreateTask } from '@/api/task';
 
 export function ModalCreateTask({ project_id, isModal, onClose, value, handleContent }) {
@@ -25,17 +24,6 @@ export function ModalCreateTask({ project_id, isModal, onClose, value, handleCon
 
     const [isPerformersMember, setIsPerformersMember] = useState(false);
     const [listPerformersMember, setListPerformersMember] = useState([]);
-
-    const [files, setFiles] = useState();
-
-
-    const handleDeleteResponsibleMember = (index) => {
-        const _members = listResponsibleMember.filter((v, i) => i !== index)
-        setListResponsibleMember(_members)
-    }
-    const handleSelectedResponsibleMember = (listUsers) => {
-        setListResponsibleMember([...listResponsibleMember, ...listUsers])
-    }
 
 
     const handleDeletePerformersMember = (index) => {

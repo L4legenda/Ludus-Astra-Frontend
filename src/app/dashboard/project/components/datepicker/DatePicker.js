@@ -8,16 +8,19 @@ import ru from 'date-fns/locale/ru'; // Если нужно использова
 
 registerLocale('ru', ru);
 
-export const MyDatePicker = ({onChange}) => {
-    const [startDate, setStartDate] = useState();
+export const MyDatePicker = ({ value, onChange }) => {
+    const [startDate, setStartDate] = useState(value);
 
     const handleDate = (date) => {
         setStartDate(date)
         onChange && onChange(date)
     }
 
-    useState(()=>{
-        setStartDate(new Date())
+    useState(() => {
+        if (!startDate) {
+            setStartDate(new Date())
+        }
+
     }, [])
 
     return (

@@ -32,7 +32,7 @@ export default function Home() {
 
     // Собираем данные формы в FormData
     const data = new FormData();
-    data.append('FullName', formData.name);
+    data.append('FullName', formData.fullname);
     data.append('Email', formData.email);
     data.append('Password', formData.password);
     if (photo) {

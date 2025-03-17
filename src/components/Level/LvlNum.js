@@ -1,6 +1,6 @@
 "use client"
 export function LvlNum({ lvl = 1 }) {
-    const getColor = (value) => {
+    const getColor = (value = 1) => {
         // Определяем массив из 5 цветов в формате RGB
         const colors = [
             { r: 0, g: 128, b: 0 },    // Зеленый
@@ -44,7 +44,7 @@ export function LvlNum({ lvl = 1 }) {
     }
     const color = getColor(1)
     return (
-        <span style={{ color: getColor(lvl) }}>{lvl}</span>
+        <span style={{ color: getColor(lvl || 1) }}>{lvl}</span>
     )
 }
 

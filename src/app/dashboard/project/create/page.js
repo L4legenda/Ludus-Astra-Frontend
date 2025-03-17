@@ -113,6 +113,7 @@ export default function ProjectCreate() {
             <div>
                 {isModalAddMember && (
                     <SelecterUser
+                        isRightArrow={true}
                         visible={isModalAddMember}
                         onClose={() => setIsModalAddMember(false)}
                         onSelectedUsers={handleSelectedUser}

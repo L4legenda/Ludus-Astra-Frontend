@@ -15,3 +15,5 @@ export async function fetchSearch({ name = "" }) {
     console.log(json);
     return json
 }
+
+

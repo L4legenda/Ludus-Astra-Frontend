@@ -7,6 +7,8 @@ import { faClose } from '@fortawesome/free-solid-svg-icons';
 import { Member } from '../member/Member';
 import { useEffect, useState } from 'react';
 import { fetchSearch } from '@/api/user';
+import { get_level } from '@/utils/level';
+import { URL_HOST } from '@/api/base';
 
 export function SelecterUser({ visible, onClose, onSelectedUsers, ignoreMembers, isRightArrow=false }) {
 
@@ -19,8 +21,6 @@ export function SelecterUser({ visible, onClose, onSelectedUsers, ignoreMembers,
 
     const handleSearchUser = async () => {
         const res = await fetchSearch({ name: inputSearch })
-        console.log(res)
-
 
         const _free = res.freeUsers.filter(user =>
             !ignoreMembers.some(ignored => ignored.id === user.id)
@@ -42,9 +42,9 @@ export function SelecterUser({ visible, onClose, onSelectedUsers, ignoreMembers,
     const visibleSoonFreeUsers = soonFreeUsers.length > 0
     const visibleBusyUsers = busyUsers.length > 0
 
-    const listFreeUsers = freeUsers.map((v, i) => <Member user={v} key={i} />)
-    const listSoonFreeUsers = soonFreeUsers.map((v, i) => <Member user={v} key={i} />)
-    const listBusyUsers = busyUsers.map((v, i) => <Member user={v} key={i} />)
+    const listFreeUsers = freeUsers.map((v, i) => <Member avatar={ URL_HOST + v?.profilePictureUrl} lvl={get_level(v?.exp)} user={v} key={i} />)
+    const listSoonFreeUsers = soonFreeUsers.map((v, i) => <Member avatar={URL_HOST + v?.profilePictureUrl} lvl={get_level(v?.exp)} user={v} key={i} />)
+    const listBusyUsers = busyUsers.map((v, i) => <Member avatar={URL_HOST + v?.profilePictureUrl} lvl={get_level(v?.exp)} user={v} key={i} />)
 
     useEffect(() => {
         handleSearchUser()

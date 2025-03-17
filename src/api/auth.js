@@ -29,6 +29,22 @@ export async function fetchSignin(data) {
     return json
 }
 
+export async function fetchAuthMe() {
+    var response = await fetch(`${URL_HOST}/api/Auth/me/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization": `Bearer ${get_user_token()}`
+        },
+    })
+    if (!response.ok) {
+        throw new Error("No auth");
+    }
+    const json = await response.json();
+
+    return json
+}
+
 export async function fetchAuthCheck() {
     var response = await fetch(`${URL_HOST}/api/Auth/check/`, {
         method: 'GET',

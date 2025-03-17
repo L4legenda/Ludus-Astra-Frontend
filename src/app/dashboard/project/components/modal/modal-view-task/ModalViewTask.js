@@ -12,19 +12,22 @@ import { SubTaskInput } from '../../sub-task-input/SubTaskInput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { SelecterUser } from '@/components/user/SelecterUser';
+import { MyDatePicker } from '../../datepicker/DatePicker';
+import { fetchUpdateTask } from '@/api/task';
 
-export function ModalViewTask({ isModal, onClose, data, handleContent }) {
+export function ModalViewTask({ isModal, onClose, data }) {
 
     const [isEditingName, setIsEditingName] = useState(false)
 
     const [name, setName] = useState(data?.title)
+    const [deadline, setDeadline] = useState(data?.deadline)
     const [status, setStatus] = useState(data?.status)
     const [priority, setPriority] = useState(data?.priority)
     const [description, setDescription] = useState(data?.description)
     const [subTasks, setSubTasks] = useState(data?.subTasks)
 
     const [isPerformersMember, setIsPerformersMember] = useState(false);
-    const [listPerformersMember, setListPerformersMember] = useState([]);
+    const [listPerformersMember, setListPerformersMember] = useState(data?.assignees || []);
 
     const handleDeletePerformersMember = (index) => {
         const _members = listResponsibleMember.filter((v, i) => i !== index)
@@ -34,8 +37,23 @@ export function ModalViewTask({ isModal, onClose, data, handleContent }) {
         setListPerformersMember([...listPerformersMember, ...listUsers])
     }
 
-    const submitContent = () => {
-        handleContent("")
+    const submitContent = async () => {
+        const id_task = data?.id;
+        let _subTasks = subTasks
+        if (typeof subTasks == "string"){
+            _subTasks = JSON.parse(subTasks);
+        }
+        console.log(subTasks)
+        await fetchUpdateTask(id_task, {
+            "title": name,
+            "description": description,
+            "deadline": new Date(deadline).toISOString(),
+            "status": parseInt(status),
+            "priority": parseInt(priority),
+            "assigneeIds": listPerformersMember.map((v, i) => v.id),
+            "subTasks": JSON.stringify(_subTasks),
+        })
+        onClose()
     };
 
     return (
@@ -67,6 +85,11 @@ export function ModalViewTask({ isModal, onClose, data, handleContent }) {
                 <div className={styles.exp}>
                     +{data?.exp} опыта
                 </div>
+            </div>
+
+            <div>
+                <div className={styles.deadline}>Дедлайн</div>
+                <MyDatePicker value={deadline} onChange={setDeadline} />
             </div>
 
             <div>
